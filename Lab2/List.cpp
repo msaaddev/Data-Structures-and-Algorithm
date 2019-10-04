@@ -100,6 +100,24 @@ public:
             temp = temp->getNextNode();
         }
     }
+
+    void deleteNode(int n)
+    {
+        start();
+        while (currentNode != 0)
+        {
+            if (get() == n)
+            {
+                break;
+            }
+            move();
+        }
+        cout << currentNode << "    " << get();
+        lastCurrentNode->setNextNode(currentNode->getNextNode());
+        delete currentNode;
+        size--;
+    }
+
     void start()
     {
         currentNode = headNode;
