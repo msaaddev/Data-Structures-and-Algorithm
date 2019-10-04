@@ -118,6 +118,21 @@ public:
         size--;
     }
 
+    int sumOfNode()
+    {
+        int sum = 0;
+        int n;
+        while (currentNode != 0)
+        {
+            n = get();
+            sum = sum + n;
+            move();
+        }
+        cout << "SUM of all nodes: " << sum << endl
+             << endl;
+        return sum;
+    }
+
     void start()
     {
         currentNode = headNode;
