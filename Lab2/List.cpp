@@ -133,6 +133,11 @@ public:
         return sum;
     }
 
+    void update(int n)
+    {
+        currentNode->setValue(n);
+    }
+
     void start()
     {
         currentNode = headNode;
