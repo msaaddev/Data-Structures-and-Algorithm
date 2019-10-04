@@ -90,6 +90,16 @@ public:
         size++;
     }
 
+    void display()
+    {
+        Node *temp = headNode;
+        cout << "\nMy Linked List is\n";
+        while (temp)
+        {
+            cout << temp->getValue() << endl;
+            temp = temp->getNextNode();
+        }
+    }
     void start()
     {
         currentNode = headNode;
