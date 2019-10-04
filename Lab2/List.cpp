@@ -67,6 +67,29 @@ public:
         size++;
     }
 
+    void insertAtEnd(int n)
+    {
+        lastCurrentNode = currentNode;
+        Node *newNode = new Node();
+        if (currentNode)
+        {
+            currentNode = headNode;
+            while (currentNode->getNextNode())
+            {
+                currentNode = currentNode->getNextNode();
+            }
+            currentNode->setNextNode(newNode);
+        }
+        else
+        {
+            headNode = newNode;
+        }
+        currentNode = newNode;
+        currentNode->setValue(n);
+        currentNode->setNextNode(0);
+        size++;
+    }
+
     void start()
     {
         currentNode = headNode;
