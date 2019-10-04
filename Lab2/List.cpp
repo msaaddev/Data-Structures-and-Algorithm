@@ -1,16 +1,31 @@
-#include <iostream>
+//This Program contains the list class. We declared insert, insert at end, insert at beginning, update value by index,
+//update value by using previous value and print the link list
+
+//Added Node.cpp file
 #include "Node.cpp"
+#include <iostream>
+
 using namespace std;
 
-class List
+//Declared class list in which we defined methods we want to implement on Link List
+class list
 {
+
+    //Pointer which has the address of top
     Node *headNode;
+
+    //pointer which points to the current Node
     Node *currentNode;
+
+    //pointer which points to the Last Current Node
     Node *lastCurrentNode;
+
+    //To keep record of size of Link List
     int size;
 
 public:
-    List()
+    //Default Constructor which Sets all pointers to NULL and size to zero
+    list()
     {
         headNode = NULL;
         currentNode = NULL;
@@ -18,144 +33,285 @@ public:
         size = 0;
     }
 
-    void insert(int n)
+    //Function to insert a new Node in the link list
+    void insert(int number)
     {
         if (currentNode != NULL)
         {
             if (currentNode->getNextNode() == 0)
             {
-                Node *newNode = new Node();
+                Node *temp = new Node();
+                currentNode->setNextNode(temp);
                 lastCurrentNode = currentNode;
-                currentNode->setNextNode(newNode);
-                currentNode = newNode;
-
-                currentNode->setValue(n);
+                currentNode = temp;
+                currentNode->setValue(number);
                 currentNode->setNextNode(0);
                 size++;
             }
             else
             {
-                Node *newNode = new Node();
-                newNode->setNextNode(currentNode->getNextNode());
-                currentNode->setNextNode(newNode);
+                Node *temp = new Node();
+                temp->setNextNode(currentNode->getNextNode());
+                currentNode->setNextNode(temp);
                 lastCurrentNode = currentNode;
-                currentNode = newNode;
+                currentNode = temp;
+                currentNode->setValue(number);
+                size++;
             }
         }
         else
         {
-
-            Node *newNode = new Node();
-            headNode = newNode;
+            Node *temp = new Node();
+            headNode = temp;
             currentNode = headNode;
             lastCurrentNode = 0;
-
-            currentNode->setValue(n);
+            currentNode->setValue(number);
             currentNode->setNextNode(0);
             size++;
         }
     }
 
-    void insertAtBegin(int n)
+    //function to insert a value at certain index
+    void insertByPosition(int value, int position)
     {
-        Node *newNode = new Node();
-        newNode->setNextNode(headNode);
-        headNode = newNode;
-        currentNode = headNode;
-        lastCurrentNode = 0;
-        currentNode->setValue(n);
-        size++;
-    }
-
-    void insertAtEnd(int n)
-    {
-        lastCurrentNode = currentNode;
-        Node *newNode = new Node();
-        if (currentNode)
+        start();
+        if (position <= size)
         {
-            currentNode = headNode;
-            while (currentNode->getNextNode())
+            for (int i = 0; i < position - 2; i++)
             {
-                currentNode = currentNode->getNextNode();
+                move();
             }
-            currentNode->setNextNode(newNode);
+            insert(value);
         }
         else
         {
-            headNode = newNode;
-        }
-        currentNode = newNode;
-        currentNode->setValue(n);
-        currentNode->setNextNode(0);
-        size++;
-    }
-
-    void display()
-    {
-        Node *temp = headNode;
-        cout << "\nMy Linked List is\n";
-        while (temp)
-        {
-            cout << temp->getValue() << endl;
-            temp = temp->getNextNode();
+            cout << "The position " << position << " is not available in Link list. Node is inserted at the end" << endl;
+            insertAtEnd(value);
         }
     }
 
-    void deleteNode(int n)
+    void insertAfterValue(int value, int valueOfNodeAfter)
     {
         start();
-        while (currentNode != 0)
+        for (int i = 0; i < size; i++)
         {
-            if (get() == n)
+            if (currentNode->getValue() == valueOfNodeAfter)
             {
+                insert(value);
                 break;
             }
             move();
         }
-        cout << currentNode << "    " << get();
-        lastCurrentNode->setNextNode(currentNode->getNextNode());
-        delete currentNode;
-        size--;
     }
 
-    int sumOfNode()
+    //Function to insert a new Node at the start of Link List
+    void insertAtBegin(int number)
     {
-        int sum = 0;
-        int n;
-        while (currentNode != 0)
+
+        start();
+        Node *temp = new Node();
+        temp->setNextNode(currentNode);
+        currentNode = temp;
+        headNode = temp;
+        currentNode->setValue(number);
+        lastCurrentNode = 0;
+        size++;
+    }
+
+    //Function to insert a new Node at the end of Link List
+    void insertAtEnd(int number)
+    {
+        start();
+        for (int i = 0; i < size; i++)
         {
-            n = get();
-            sum = sum + n;
             move();
         }
-        cout << "SUM of all nodes: " << sum << endl
-             << endl;
-        return sum;
-    }
-
-    void update(int n)
-    {
-        currentNode->setValue(n);
-    }
-
-    void start()
-    {
-        currentNode = headNode;
-    }
-
-    void move()
-    {
+        Node *temp = new Node();
+        currentNode->setNextNode(temp);
         lastCurrentNode = currentNode;
-        currentNode->setNextNode(currentNode);
+        currentNode = temp;
+        currentNode->setValue(number);
+        currentNode->setNextNode(0);
+        size++;
     }
 
+    //Function to update value of a Node by using index of that Node
+    void updateValueByIndex(int newValue, int index)
+    {
+        start();
+        for (int i = 0; i < index - 1; i++)
+        {
+            move();
+        }
+        currentNode->setValue(newValue);
+    }
+
+    //Function to update value of a Node by using previous value of that Node
+    void updateValue(int newValue, int previousValue)
+    {
+        start();
+        for (int i = 0; i < size; i++)
+        {
+            if (currentNode->getValue() == previousValue)
+            {
+                currentNode->setValue(newValue);
+                break;
+            }
+            move();
+        }
+    }
+
+    //Function to get size of Link List
+    int getSize()
+    {
+        return size;
+    }
+
+    //Function to get value of a specific Node
     int get()
     {
         return currentNode->getValue();
     }
 
-    int getSize()
+    //Function to get Value of Last current Node
+    int getLast()
     {
-        return size;
+        return lastCurrentNode->getValue();
+    }
+
+    //Function to move at the start of the Link List
+    void start()
+    {
+        lastCurrentNode = 0;
+        currentNode = headNode;
+    }
+
+    //Function to move to next Node
+    void move()
+    {
+        if (currentNode->getNextNode() != 0)
+        {
+            lastCurrentNode = currentNode;
+            currentNode = currentNode->getNextNode();
+        }
+    }
+
+    //Function to print all the Nodes in the Link List
+    void print()
+    {
+        if (headNode == NULL)
+        {
+            cout << "/nLink List is empty/n";
+        }
+        else
+        {
+            start();
+            for (int i = 0; i < size; i++)
+            {
+                cout << get() << endl;
+                if (i < (size - 1))
+                {
+                    move();
+                }
+            }
+        }
+    }
+
+    //Function to delete a Node from list
+
+    void deleteNode(int valueOfNode)
+    {
+
+        start();
+
+        for (int i = 0; i < size; i++)
+        {
+
+            if (currentNode->getValue() == valueOfNode)
+            {
+
+                if (currentNode->getNextNode() != NULL)
+                {
+
+                    if (currentNode == headNode)
+                    {
+
+                        if (size == 1)
+                        {
+                            headNode = NULL;
+                            delete currentNode;
+                            currentNode = headNode;
+                            lastCurrentNode = 0;
+                            break;
+                        }
+                        else
+                        {
+                            Node *ptr;
+                            ptr = currentNode;
+                            currentNode = currentNode->getNextNode();
+                            headNode = currentNode;
+                            delete ptr;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        lastCurrentNode->setNextNode(currentNode->getNextNode());
+                        delete currentNode;
+                        currentNode = lastCurrentNode;
+                        break;
+                    }
+                }
+                else
+                {
+                    lastCurrentNode->setNextNode(0);
+                    delete currentNode;
+                    currentNode = lastCurrentNode;
+                    break;
+                }
+            }
+
+            move();
+        }
+        size--;
+    }
+
+    //Printing the sum of all the values in linklist
+
+    int sumValue()
+    {
+        int sum = 0;
+        start();
+        for (int i = 0; i < size; i++)
+        {
+            sum += currentNode->getValue();
+            move();
+        }
+        return sum;
+    }
+
+    //Searching a value if it is present in the list
+    void searchValue(int value)
+    {
+        start();
+        bool flag = false;
+        int index = 0;
+        for (int i = 0; i < size; i++)
+        {
+            if (currentNode->getValue() == value)
+            {
+                flag = true;
+                index = i;
+            }
+            move();
+        }
+        if (flag == true)
+        {
+            cout << "The value is present in the link list at index " << index << endl;
+        }
+        else
+        {
+            cout << "The value is not present in the link list" << endl;
+        }
     }
 };

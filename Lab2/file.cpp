@@ -1,52 +1,70 @@
+#include "list.cpp"
 #include <iostream>
-#include "List.cpp"
+
 using namespace std;
 
 int main()
 {
-    {
-        List myLinkList;
-        myLinkList.insert(2);
-        myLinkList.insert(3);
-        myLinkList.insert(67);
-        myLinkList.insert(91);
-        myLinkList.display();
-        cout << "Insert At Begin: \n";
+     //Declared an object of list type
+     list linkList;
 
-        myLinkList.insertAtBegin(16);
-        myLinkList.display();
-        cout << endl
-             << "Insert At End: \n";
-        myLinkList.insertAtEnd(25);
-        myLinkList.display();
-        cout << endl
-             << "Update: \n";
+     //inserting nodes in the link list
+     linkList.insert(100);
+     linkList.insert(150);
+     linkList.insert(200);
+     linkList.insert(1000);
+     cout << "Now my Link List is" << endl;
+     linkList.print();
 
-        myLinkList.start();
-        myLinkList.move();
-        myLinkList.move();
-        myLinkList.update(65);
-        myLinkList.display();
-        cout << endl
-             << endl
-             << "After deleting a Node:" << endl;
+     //inserting a node having value of 50 at the start of the Link List
+     linkList.insertAtBegin(50);
 
-        myLinkList.start();
-        myLinkList.move();
-        myLinkList.move();
-        myLinkList.move();
-        myLinkList.deleteNode(67);
-        myLinkList.display();
-        int VALUE;
-        cout << "Enter the value you want to search in linkedSList : ";
-        cin >> VALUE;
+     cout << "\nNow after adding 50 at the beginning my Link List is" << endl;
+     linkList.print();
 
-        myLinkList.start();
+     //inserting a node having value of 5 at the start of the Link List
+     linkList.insertAtBegin(5);
+     cout << "\nNow after adding 5 at the beginning my Link List is" << endl;
+     linkList.print();
 
-        myLinkList.start();
+     //inserting a node having value of 1100 at the end of the Link List
+     linkList.insertAtEnd(1100);
+     cout << "\nNow after adding 50 at the end my Link List is" << endl;
+     linkList.print();
 
-        //cout << "Size of Linked List = " << myLinkList.getSize();
+     //Updated a node having value of 200 at the 5th index in the list by new value 201
+     linkList.updateValueByIndex(201, 5);
+     //Printing the list after updation
+     cout << "\nNow after Updating a node having value of 200 at the 5th index in the list by new value 201 my Link List is" << endl;
+     linkList.print();
 
-        return 0;
-    }
+     //Updating a node having previous value of 150 in the list by new value 151
+     linkList.updateValue(151, 150);
+     cout << "Now after Updating a node having previous value of 150 in the list by new value 151 my Link List is" << endl;
+     linkList.print();
+
+     //Deleting a node from link list
+     cout << "\nList after deleting a node" << endl;
+     linkList.deleteNode(100);
+
+     linkList.print();
+     cout << "\nTesting\n";
+
+     //Deleting first node from list
+     linkList.deleteNode(5);
+     linkList.print();
+
+     //Calculating sum of all the Values present in link list
+     cout << "\nSum of values present in the list is: " << linkList.sumValue() << endl;
+
+     //Inserting a node at given position
+     cout << "After inserting a node at given position" << endl;
+     linkList.insertByPosition(800, 2);
+     linkList.print();
+
+     //After inserting a node after given value
+     cout << "After inserting a node after given value" << endl;
+     linkList.insertAfterValue(902, 151);
+     linkList.print();
+     system("pause");
 }
