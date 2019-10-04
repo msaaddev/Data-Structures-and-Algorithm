@@ -4,14 +4,49 @@ using namespace std;
 
 int main()
 {
-    List myLinkList;
-    myLinkList.insert(10);
+    {
+        List myLinkList;
+        myLinkList.insert(2);
+        myLinkList.insert(3);
+        myLinkList.insert(67);
+        myLinkList.insert(91);
+        myLinkList.display();
+        cout << "Insert At Begin: \n";
 
-    cout << myLinkList.get() << endl;
+        myLinkList.insertAtBegin(16);
+        myLinkList.display();
+        cout << endl
+             << "Insert At End: \n";
+        myLinkList.insertAtEnd(25);
+        myLinkList.display();
+        cout << endl
+             << "Update: \n";
 
-    myLinkList.move();
+        myLinkList.start();
+        myLinkList.move();
+        myLinkList.move();
+        myLinkList.update(65);
+        myLinkList.display();
+        cout << endl
+             << endl
+             << "After deleting a Node:" << endl;
 
-    myLinkList.insert(123);
-    cout << myLinkList.get() << endl;
-    cout << myLinkList.getSize();
+        myLinkList.start();
+        myLinkList.move();
+        myLinkList.move();
+        myLinkList.move();
+        myLinkList.deleteNode(67);
+        myLinkList.display();
+        int VALUE;
+        cout << "Enter the value you want to search in linkedSList : ";
+        cin >> VALUE;
+
+        myLinkList.start();
+
+        myLinkList.start();
+
+        //cout << "Size of Linked List = " << myLinkList.getSize();
+
+        return 0;
+    }
 }
