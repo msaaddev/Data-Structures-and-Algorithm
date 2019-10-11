@@ -15,63 +15,67 @@ int main()
      linkList.insert(1000);
      cout << "Now my Link List is" << endl;
      linkList.print();
-
-     //inserting a node having value of 50 at the start of the Link List
-     linkList.insertAtBegin(50);
-
-     cout << "\nNow after adding 50 at the beginning my Link List is" << endl;
+     linkList.move();
+     linkList.insert(1200);
+     cout << "Now my Link List is" << endl;
      linkList.print();
 
-     //inserting a node before two indexes
-     linkList.back();
-     linkList.back();
-     linkList.insert(300);
-     cout << endl << "Now my Link List is" << endl;
-     linkList.print();
+     // //inserting a node having value of 50 at the start of the Link List
+     // linkList.insertAtBegin(50);
 
-     //inserting a node having value of 5 at the start of the Link List
-     linkList.insertAtBegin(5);
-     cout << "\nNow after adding 5 at the beginning my Link List is" << endl;
-     linkList.print();
+     // cout << "\nNow after adding 50 at the beginning my Link List is" << endl;
+     // linkList.print();
 
-     //inserting a node having value of 1100 at the end of the Link List
-     linkList.insertAtEnd(1100);
-     cout << "\nNow after adding 1100 at the end my Link List is" << endl;
-     linkList.print();
+     // //inserting a node before two indexes
+     // linkList.back();
+     // linkList.back();
+     // linkList.insert(300);
+     // cout << endl << "Now my Link List is" << endl;
+     // linkList.print();
 
-     //Updated a node having value of 200 at the 5th index in the list by new value 201
-     linkList.updateValueByIndex(201, 5);
-     //Printing the list after updation
-     cout << "\nNow after Updating a node having value of 200 at the 5th index in the list by new value 201 my Link List is" << endl;
-     linkList.print();
-     cout << endl;
+     // //inserting a node having value of 5 at the start of the Link List
+     // linkList.insertAtBegin(5);
+     // cout << "\nNow after adding 5 at the beginning my Link List is" << endl;
+     // linkList.print();
 
-     //Updating a node having previous value of 150 in the list by new value 151
-     linkList.updateValue(151, 150);
-     cout << "Now after Updating a node having previous value of 150 in the list by new value 151 my Link List is" << endl;
-     linkList.print();
+     // //inserting a node having value of 1100 at the end of the Link List
+     // linkList.insertAtEnd(1100);
+     // cout << "\nNow after adding 1100 at the end my Link List is" << endl;
+     // linkList.print();
 
-     //Deleting a node from link list
-     cout << "\nList after deleting a node" << endl;
-     linkList.deleteNode(100);
+     // //Updated a node having value of 200 at the 5th index in the list by new value 201
+     // linkList.updateValueByIndex(201, 5);
+     // //Printing the list after updation
+     // cout << "\nNow after Updating a node having value of 200 at the 5th index in the list by new value 201 my Link List is" << endl;
+     // linkList.print();
+     // cout << endl;
 
-     linkList.print();
-     cout << "\nTesting\n";
+     // //Updating a node having previous value of 150 in the list by new value 151
+     // linkList.updateValue(151, 150);
+     // cout << "Now after Updating a node having previous value of 150 in the list by new value 151 my Link List is" << endl;
+     // linkList.print();
 
-     //Deleting first node from list
-     linkList.deleteNode(5);
-     linkList.print();
+     // //Deleting a node from link list
+     // cout << "\nList after deleting a node" << endl;
+     // linkList.deleteNode(100);
 
-     //Calculating sum of all the Values present in link list
-     cout << "\nSum of values present in the list is: " << linkList.sumValue() << endl;
+     // linkList.print();
+     // cout << "\nTesting\n";
 
-     //Inserting a node at given position
-     cout << endl << "After inserting a node at given position" << endl;
-     linkList.insertByPosition(800, 2);
-     linkList.print();
+     // //Deleting first node from list
+     // linkList.deleteNode(5);
+     // linkList.print();
 
-     //After inserting a node after given value
-     cout << endl << "After inserting a node after given value" << endl;
-     linkList.insertAfterValue(902, 151);
-     linkList.print();
+     // //Calculating sum of all the Values present in link list
+     // cout << "\nSum of values present in the list is: " << linkList.sumValue() << endl;
+
+     // //Inserting a node at given position
+     // cout << endl << "After inserting a node at given position" << endl;
+     // linkList.insertByPosition(800, 2);
+     // linkList.print();
+
+     // //After inserting a node after given value
+     // cout << endl << "After inserting a node after given value" << endl;
+     // linkList.insertAfterValue(902, 151);
+     // linkList.print();
 }

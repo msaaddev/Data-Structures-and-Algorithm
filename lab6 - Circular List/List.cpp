@@ -32,18 +32,30 @@ public:
     //Function to insert a new Node in the link list
     void insert(int number)
     {
-        if (currentNode != NULL)
+        if (size == 0)
         {
-            if (currentNode->getNextNode() == 0)
+            Node *newNode = new Node();
+            headNode = newNode;
+            currentNode = headNode;
+            currentNode->setValue(number);
+            currentNode->setNextNode(newNode);
+            currentNode->setPrevNode(newNode);
+            size++;
+        }
+        else
+        {
+            if (currentNode->getNextNode() == headNode)
             {
+
                 Node *newNode = new Node();
-                currentNode->setNextNode(newNode);
+                newNode->setValue(number);
+                newNode->setNextNode(headNode);
+                newNode->setPrevNode(currentNode);
+                headNode->setPrevNode(newNode);
+
+                (currentNode->getNextNode())->setNextNode(newNode);
                 newNode->setPrevNode(currentNode);
                 currentNode = newNode;
-                currentNode->setValue(number);
-                currentNode->setNextNode(headNode);
-                headNode->setPrevNode(currentNode);
-
                 size++;
             }
             else
@@ -58,17 +70,6 @@ public:
                 currentNode = newNode;
                 size++;
             }
-        }
-        else
-        {
-            Node *newNode = new Node();
-            headNode = newNode;
-            headNode->setPrevNode(0);
-            currentNode = headNode;
-
-            currentNode->setValue(number);
-            currentNode->setNextNode(headNode);
-            size++;
         }
     }
 
@@ -265,7 +266,7 @@ public:
                         Node *temp = currentNode->getPrevNode();
                         (currentNode->getNextNode())->setPrevNode(currentNode->getPrevNode());
                         back();
-                        currentNode->setNextNode((currentNode->getNextNode)->getNextNode);
+        currentNode->setNextNode((currentNode->getNextNode())->getNextNode());
                         move();
                         delete currentNode;
                         currentNode = temp;
