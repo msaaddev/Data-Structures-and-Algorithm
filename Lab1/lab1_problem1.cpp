@@ -15,6 +15,7 @@ complexNumber addition(complexNumber firstNumber, complexNumber secondNumber)
     thirdNumber.imaginary = firstNumber.imaginary + secondNumber.imaginary;
 
     return thirdNumber;
+
 }
 
 complexNumber subtraction(complexNumber firstNumber, complexNumber secondNumber)
