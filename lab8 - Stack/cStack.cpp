@@ -91,12 +91,13 @@ public:
 
         for (int i = 0; i <= infixExpression.length(); i++)
         {
-            int value = infixExpression[i];
-            if (value >= 48 && value <= 57)
+            int value = infixExpression[i];     //converting value of string to ASCII value
+            if (value >= 48 && value <= 57)     //checking if the value is ASCII value is in between 0 to 9
             {
                 postExpression = postExpression + infixExpression[i];
             }
-
+            
+            //condition to check if there is an opening bracket in the loop
             else if (infixExpression[i] == '(')
             {
                 s.push(infixExpression[i]);
@@ -119,7 +120,7 @@ public:
                     postExpression = postExpression + op;
                 }
                 s.push(infixExpression[i]);
-            }   
+            }
         }
         while (!s.stackIsEmpty())
         {

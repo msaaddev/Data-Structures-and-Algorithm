@@ -7,6 +7,9 @@ using namespace std;
 int main()
 {
      CStack s;
-     string num = "(A+B)/3^2";
+     string num;
+     cout << "Enter an infix expression: ";
+     cin >>  num;
+     cout << endl;
      cout << "Post Expression: " << s.infixToPost(num);
 }
