@@ -35,10 +35,14 @@ Tree &Tree::insert(cNode *&ptr)
             if (temp->getValue() < ptr->getValue())
             {
                 temp = temp->rightNode;
+                if (temp->rightNode == NULL)
+                    break;
             }
             else if (temp->getValue() > ptr->getValue())
             {
                 temp = temp->leftNode;
+                if (temp->leftNode == NULL)
+                    break;
             }
             else
             {
