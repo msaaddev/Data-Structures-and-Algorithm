@@ -8,8 +8,16 @@ private:
     cNode *root;
 
 public:
+    Tree() : root(NULL){};
+    Tree(cNode *&ptr) : root(ptr) {}
     Tree &insert(cNode *&ptr);
 };
+
+Tree::Tree(cNode *&ptr) : root(ptr)
+{
+    root->rightNode = root->leftNode = NULL;
+    ptr = NULL;
+}
 
 Tree &Tree::insert(cNode *&ptr)
 {
@@ -28,9 +36,14 @@ Tree &Tree::insert(cNode *&ptr)
             {
                 temp = temp->rightNode;
             }
-            else
+            else if (temp->getValue() > ptr->getValue())
             {
                 temp = temp->leftNode;
+            }
+            else
+            {
+                cout << "\n\nNode already exists.\n\n";
+                break;
             }
         }
 
@@ -38,9 +51,13 @@ Tree &Tree::insert(cNode *&ptr)
         {
             temp->rightNode = ptr;
         }
-        else
+        else if (temp->getValue() > ptr->getValue())
         {
             temp->leftNode = ptr;
         }
+
+        temp = NULL;
     }
+
+    return *this;
 }
