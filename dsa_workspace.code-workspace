@@ -4,5 +4,13 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.associations": {
+			".php_cs": "php",
+			".php_cs.dist": "php",
+			"*.php": "php",
+			"ostream": "cpp",
+			"iostream": "cpp"
+		}
+	}
 }
