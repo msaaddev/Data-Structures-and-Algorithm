@@ -34,7 +34,31 @@ int main()
     node5->setName("Justin");
     node5->setPriority(5);
 
-    queue.insertWithPriority(node1).insertWithPriority(node2).insertWithPriority(node3).insertWithPriority(node4).insertWithPriority(node5);
+    cNode *node6 = new cNode();
+    node6->setName("Arthur");
+    node6->setPriority(6);
+
+    cNode *node7 = new cNode();
+    node7->setName("Donald");
+    node7->setPriority(7);
+
+    cNode *node8 = new cNode();
+    node8->setName("Gabby");
+    node8->setPriority(8);
+
+    cNode *node9 = new cNode();
+    node9->setName("Mike");
+    node9->setPriority(9);
+
+    cNode *node10 = new cNode();
+    node10->setName("Betty");
+    node10->setPriority(10);
+
+    cNode *node11 = new cNode();
+    node11->setName("Shad");
+    node11->setPriority(11);
+
+    queue.insertWithPriority(node1).insertWithPriority(node2).insertWithPriority(node3).insertWithPriority(node4).insertWithPriority(node5).insertWithPriority(node6).insertWithPriority(node7).insertWithPriority(node8).insertWithPriority(node9).insertWithPriority(node10).insertWithPriority(node11);
 
     queue.print();
 

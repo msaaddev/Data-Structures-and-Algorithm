@@ -93,7 +93,7 @@ public:
             cNode *ptr = top;
             while (ptr)
             {
-                cout << "Values: " << ptr->getName() << ", Marks: " << ptr->getMarks() << endl;
+                cout << "Name: " << ptr->getName() << ", Marks: " << ptr->getMarks() << endl;
                 ptr = ptr->nextNode;
             }
         }
