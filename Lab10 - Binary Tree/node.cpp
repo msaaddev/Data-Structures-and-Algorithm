@@ -7,6 +7,7 @@ class cNode
 
 public:
     cNode *leftNode, *rightNode;
+    cNode() : leftNode(NULL), rightNode(NULL) {}
     void setValue(int v)
     {
         value = v;
