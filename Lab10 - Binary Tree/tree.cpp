@@ -63,5 +63,35 @@ Tree &Tree::insert(cNode *&ptr)
         temp = NULL;
     }
 
-    return *this;
+int Tree::search(cNode *&ptr)
+{
+    int level = -1;
+    cNode *temp = root;
+
+    while (temp->leftNode != NULL || temp->rightNode != NULL)
+    {
+
+        level++;
+        if (temp->getValue() < ptr->getValue())
+        {
+            temp = temp->rightNode;
+            if (temp->getValue() == ptr->getValue())
+                return level;
+        }
+        else if (temp->getValue() > ptr->getValue())
+        {
+            temp = temp->leftNode;
+            if (temp->getValue() == ptr->getValue())
+                return level;
+        }
+        else if (temp->getValue() == ptr->getValue())
+        {
+            return level;
+        }
+        else
+        {
+            cout << "\n\nNode does not exist.\n\n";
+            return -1;
+        }
+    }
 }
