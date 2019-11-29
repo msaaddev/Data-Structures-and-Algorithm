@@ -9,59 +9,60 @@ private:
 
 public:
     Tree() : root(NULL){};
-    Tree(cNode *&ptr) : root(ptr) {}
+    Tree(cNode *&ptr) : root(ptr)
+    {
+        root->rightNode = root->leftNode = NULL;
+        ptr = NULL;
+    }
     Tree &insert(cNode *&ptr);
+    int search(cNode *&ptr);
 };
-
-Tree::Tree(cNode *&ptr) : root(ptr)
-{
-    root->rightNode = root->leftNode = NULL;
-    ptr = NULL;
-}
 
 Tree &Tree::insert(cNode *&ptr)
 {
     if (!root)
     {
         root = ptr;
-        root->rightNode = root->leftNode = NULL;
         ptr = NULL;
+        return *this;
     }
-    else
+    cNode *rptr = root;
+    while (rptr)
     {
-        cNode *temp = root;
-        while (temp->leftNode != NULL && temp->getRightNode != NULL)
+        if (ptr->getValue() > rptr->getValue())
         {
-            if (temp->getValue() < ptr->getValue())
+            if (rptr->rightNode)
             {
-                temp = temp->rightNode;
-                if (temp->rightNode == NULL)
-                    break;
-            }
-            else if (temp->getValue() > ptr->getValue())
-            {
-                temp = temp->leftNode;
-                if (temp->leftNode == NULL)
-                    break;
+                rptr = rptr->rightNode;
+                cout << "\nright";
             }
             else
             {
-                cout << "\n\nNode already exists.\n\n";
-                break;
+                rptr->rightNode = ptr;
+                ptr = NULL;
+                cout << "\nright";
+
+                return *this;
             }
         }
-
-        if (temp->getValue() < ptr->getValue())
+        else
         {
-            temp->rightNode = ptr;
-        }
-        else if (temp->getValue() > ptr->getValue())
-        {
-            temp->leftNode = ptr;
-        }
+            if (rptr->leftNode)
+            {
+                rptr = rptr->leftNode;
+                cout << "\nleft";
+            }
+            else
+            {
+                rptr->leftNode = ptr;
+                ptr = NULL;
+                cout << "\nleft";
 
-        temp = NULL;
+                return *this;
+            }
+        }
     }
+}
 
 int Tree::search(cNode *&ptr)
 {

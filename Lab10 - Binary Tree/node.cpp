@@ -8,20 +8,11 @@ class cNode
 public:
     cNode *leftNode, *rightNode;
     cNode() : leftNode(NULL), rightNode(NULL) {}
+    cNode(int val) : leftNode(NULL), rightNode(NULL) { value = val; }
     void setData(int v)
     {
         value = v;
     }
-
-    // void s(cNode *nn)
-    // {
-    //     leftNode = nn;
-    // }
-
-    // void setPrevNode(cNode *pn)
-    // {
-    //     prevNode = pn;
-    // }
 
     int getValue()
     {
