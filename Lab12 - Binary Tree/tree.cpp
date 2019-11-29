@@ -21,6 +21,8 @@ public:
     void printPreOrder();
     void printPostOrder();
     void printInfixOrder();
+    int smallestKey();
+    int largestKey();
 };
 
 bool Tree::isEmpty()
@@ -176,4 +178,17 @@ void prtInfixOrder(cNode *root)
         root->print();
         prtInfixOrder(root->rightNode);
     }
+}
+
+int Tree::smallestKey()
+{
+    cNode *rptr = root;
+    cNode *bptr;
+    while (rptr)
+    {
+        bptr = rptr;
+        rptr = rptr->leftNode;
+    }
+
+    return bptr->getValue();
 }
