@@ -192,3 +192,16 @@ int Tree::smallestKey()
 
     return bptr->getValue();
 }
+
+int Tree::largestKey()
+{
+    cNode *rptr = root;
+    cNode *bptr;
+    while (rptr)
+    {
+        bptr = rptr;
+        rptr = rptr->rightNode;
+    }
+
+    return bptr->getValue();
+}
