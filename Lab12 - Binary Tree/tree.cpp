@@ -21,8 +21,9 @@ public:
     void printPreOrder();
     void printPostOrder();
     void printInfixOrder();
-    int smallestKey();
+    cNode *smallestNode(cNode *temp);
     int largestKey();
+    cNode *removeNode(cNode *&ptr);
 };
 
 bool Tree::isEmpty()
@@ -57,13 +58,11 @@ Tree &Tree::insert(cNode *&ptr)
             if (rptr->rightNode)
             {
                 rptr = rptr->rightNode;
-                cout << "\nright";
             }
             else
             {
                 rptr->rightNode = ptr;
                 ptr = NULL;
-                cout << "\nright";
 
                 return *this;
             }
@@ -73,14 +72,11 @@ Tree &Tree::insert(cNode *&ptr)
             if (rptr->leftNode)
             {
                 rptr = rptr->leftNode;
-                cout << "\nleft";
             }
             else
             {
                 rptr->leftNode = ptr;
                 ptr = NULL;
-                cout << "\nleft";
-
                 return *this;
             }
         }
@@ -180,9 +176,9 @@ void prtInfixOrder(cNode *root)
     }
 }
 
-int Tree::smallestKey()
+cNode *Tree::smallestNode(cNode *temp)
 {
-    cNode *rptr = root;
+    cNode *rptr = temp;
     cNode *bptr;
     while (rptr)
     {
@@ -190,7 +186,7 @@ int Tree::smallestKey()
         rptr = rptr->leftNode;
     }
 
-    return bptr->getValue();
+    return bptr;
 }
 
 int Tree::largestKey()
@@ -204,4 +200,39 @@ int Tree::largestKey()
     }
 
     return bptr->getValue();
+}
+
+cNode *Tree::removeNode(cNode *&ptr)
+{
+    cNode *rptr = root;
+
+    if (rptr == NULL)
+    {
+        return;
+    }
+    if (rptr->getValue() > ptr->getValue())
+        rptr->leftNode = removeNode(rptr->leftNode);
+    else if (rptr->getValue() < ptr->getValue())
+        rptr->rightNode = removeNode(rptr->rightNode);
+    else
+    {
+        if (rptr->leftNode == NULL && rptr->rightNode != NULL)
+        {
+            cNode *newPtr = ptr->rightNode;
+            free(ptr);
+            return newPtr;
+        }
+        else if (rptr->rightNode == NULL && rptr->leftNode != NULL)
+        {
+            cNode *newPtr = ptr->leftNode;
+            free(ptr);
+            return newPtr;
+        }
+
+        cNode *newPtr = smallestNode(ptr->rightNode);
+        ptr->setData(newPtr->getValue());
+        rptr->rightNode = removeNode(rptr->rightNode);
+    }
+
+    return ptr;
 }
