@@ -17,13 +17,13 @@ public:
     bool isEmpty();
     bool isNotEmpty();
     Tree &insert(cNode *&ptr);
-    int search(cNode *&ptr);
+    cNode *search(cNode *&ptr, cNode *&temp, cNode *&rptr);
     void printPreOrder();
     void printPostOrder();
     void printInfixOrder();
     cNode *smallestNode(cNode *temp);
-    int largestKey();
-    cNode *removeNode(cNode *&ptr);
+    cNode *largestNode(cNode *temp);
+    cNode *removeNode(int value);
 };
 
 bool Tree::isEmpty()
@@ -83,35 +83,33 @@ Tree &Tree::insert(cNode *&ptr)
     }
 }
 
-int Tree::search(cNode *&ptr)
+cNode *Tree::search(cNode *&ptr, cNode *&temp, cNode *&rptr)
 {
-    int level = -1;
-    cNode *temp = root;
+    temp = root;
 
     while (temp->leftNode != NULL || temp->rightNode != NULL)
     {
-
-        level++;
+        rptr = temp;
         if (temp->getValue() < ptr->getValue())
         {
             temp = temp->rightNode;
             if (temp->getValue() == ptr->getValue())
-                return level;
+                return temp;
         }
         else if (temp->getValue() > ptr->getValue())
         {
             temp = temp->leftNode;
             if (temp->getValue() == ptr->getValue())
-                return level;
+                return temp;
         }
         else if (temp->getValue() == ptr->getValue())
         {
-            return level;
+            return temp;
         }
         else
         {
             cout << "\n\nNode does not exist.\n\n";
-            return -1;
+            return NULL;
         }
     }
 }
@@ -189,50 +187,116 @@ cNode *Tree::smallestNode(cNode *temp)
     return bptr;
 }
 
-int Tree::largestKey()
+cNode *Tree::largestNode(cNode *temp)
 {
-    cNode *rptr = root;
+    cNode *rptr = temp;
     cNode *bptr;
     while (rptr)
     {
         bptr = rptr;
         rptr = rptr->rightNode;
     }
-
-    return bptr->getValue();
+    return bptr;
 }
 
-cNode *Tree::removeNode(cNode *&ptr)
+/* void *Tree::removeNode(cNode *&ptr)
 {
-    cNode *rptr = root;
+    cNode *rptr;
+    cNode *result = this->search(ptr, result, rptr);
 
-    if (rptr == NULL)
+    if (result->leftNode == NULL && result->rightNode == NULL)
+        delete result;
+    else if (result->leftNode == NULL && result->rightNode != NULL)
     {
-        return;
+        if (rptr->getValue() > result->getValue())
+        {
+            rptr->leftNode = result->rightNode;
+            delete result;
+        }
+        else
+        {
+            rptr->rightNode = result->rightNode;
+            delete result;
+        }
     }
-    if (rptr->getValue() > ptr->getValue())
-        rptr->leftNode = removeNode(rptr->leftNode);
-    else if (rptr->getValue() < ptr->getValue())
-        rptr->rightNode = removeNode(rptr->rightNode);
+    else if (result->leftNode != NULL && result->rightNode == NULL)
+    {
+        if (rptr->getValue() > result->getValue())
+        {
+            rptr->leftNode = result->leftNode;
+            delete result;
+        }
+        else
+        {
+            rptr->rightNode = result->leftNode;
+            delete result;
+        }
+    }
     else
     {
-        if (rptr->leftNode == NULL && rptr->rightNode != NULL)
+        if (rptr->getValue() < root->getValue())
         {
-            cNode *newPtr = ptr->rightNode;
-            free(ptr);
-            return newPtr;
+            if (rptr->getValue() < result->getValue())
+            {
+                cNode *temp = smallestNode(result);
+                rptr->rightNode = temp;
+                temp->rightNode = result->rightNode;
+                delete result;
+            }
+            else
+            {
+                cNode *temp = largestNode(result);
+                rptr->leftNode = temp;
+                temp->leftNode = result->leftNode;
+                delete result;
+            }
         }
-        else if (rptr->rightNode == NULL && rptr->leftNode != NULL)
+        else
         {
-            cNode *newPtr = ptr->leftNode;
-            free(ptr);
-            return newPtr;
+            if (rptr->getValue() < result->getValue())
+            {
+                cNode *temp = smallestNode(result);
+                rptr->rightNode = temp;
+                temp->rightNode = result->rightNode;
+                delete result;
+            }
+            else
+            {
+                cNode *temp = largestNode(result);
+                rptr->leftNode = temp;
+                temp->leftNode = result->leftNode;
+                delete result;
+            }
         }
+    }
+}
+ */
 
-        cNode *newPtr = smallestNode(ptr->rightNode);
-        ptr->setData(newPtr->getValue());
-        rptr->rightNode = removeNode(rptr->rightNode);
+cNode *Tree::removeNode(int value)
+{
+    cNode *ptr = NULL;
+    ptr = root;
+    cNode *bptr = NULL;
+    if (ptr == NULL)
+    {
+        cout <<"\nTree is empty.\n";
+        return NULL;
     }
 
-    return ptr;
+    while(ptr)
+    {
+        if (ptr->getValue() == value)
+        {
+            cNode *rptr = ptr;
+            if(!ptr->leftNode)
+            {
+                if (!bptr)
+                {
+                    /* code */
+                }
+
+            }
+        }
+
+    }
 }

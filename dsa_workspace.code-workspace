@@ -10,7 +10,8 @@
 			".php_cs.dist": "php",
 			"*.php": "php",
 			"ostream": "cpp",
-			"iostream": "cpp"
+			"iostream": "cpp",
+			"xstring": "cpp"
 		}
 	}
 }
